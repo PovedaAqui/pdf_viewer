@@ -1,7 +1,7 @@
-import DrawerBar from "@/components/drawer";
+import DrawerBar from "@/components/Drawer";
 import React, { useState } from "react";
 import { Document, Page, Outline } from "react-pdf";
-import { Flex, Box, Button, Text, VStack } from "@chakra-ui/react";
+import { Flex, Box, Button, Text, VStack, HStack } from "@chakra-ui/react";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 
@@ -31,8 +31,8 @@ export default function Test() {
   }
 
   return (
-    <Flex direction={"column"} alignItems={"center"}>
-      <Box maxW="800px">
+    <Flex>
+      <Box>
         <Document
           file={"sample.pdf"}
           onLoadSuccess={onDocumentLoadSuccess}
@@ -42,30 +42,11 @@ export default function Test() {
             standardFontDataUrl: "standard_fonts/",
           }}
         >
-          <Outline onItemClick={onItemClick} />
+          <Box>
+            <DrawerBar outline={<Outline onItemClick={onItemClick} />} />
+          </Box>
           <Page pageNumber={pageNumber} />
         </Document>
-      </Box>
-      <Box mt="4" textAlign="center">
-        <Text as="span" mx="2">
-          Page {pageNumber || (numPages ? 1 : "--")} of {numPages || "--"}
-        </Text>
-      </Box>
-      <Box mt="4" textAlign="center">
-        <Button
-          colorScheme="blue"
-          disabled={pageNumber <= 1}
-          onClick={previousPage}
-        >
-          Previous
-        </Button>
-        <Button
-          colorScheme="blue"
-          disabled={pageNumber >= numPages}
-          onClick={nextPage}
-        >
-          Next
-        </Button>
       </Box>
     </Flex>
   );
