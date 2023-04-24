@@ -31,23 +31,24 @@ export default function Test() {
   }
 
   return (
-    <Flex>
-      <Box>
-        <Document
-          file={"sample.pdf"}
-          onLoadSuccess={onDocumentLoadSuccess}
-          options={{
-            cMapUrl: "cmaps/",
-            cMapPacked: true,
-            standardFontDataUrl: "standard_fonts/",
-          }}
-        >
-          <Box>
-            <DrawerBar outline={<Outline onItemClick={onItemClick} />} />
-          </Box>
-          <Page pageNumber={pageNumber} />
-        </Document>
-      </Box>
-    </Flex>
+    <>TEST</>
+    // <Flex>
+    //   <Box>
+    //     <Document
+    //       file={"sample.pdf"}
+    //       onLoadSuccess={onDocumentLoadSuccess}
+    //       options={{
+    //         cMapUrl: "cmaps/",
+    //         cMapPacked: true,
+    //         standardFontDataUrl: "standard_fonts/",
+    //       }}
+    //     >
+    //       <Box>
+    //         {/* <DrawerBar outline={<Outline onItemClick={onItemClick} />} /> */}
+    //       </Box>
+    //       <Page pageNumber={pageNumber} />
+    //     </Document>
+    //   </Box>
+    // </Flex>
   );
 }

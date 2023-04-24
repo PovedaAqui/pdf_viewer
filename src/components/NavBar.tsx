@@ -21,11 +21,14 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
-import MenuIcon from '@mui/icons-material/Menu';
-import { SvgIconComponent } from "@mui/icons-material";
+import { ArrowBackIos, Menu, Close, List, MoreVert } from '@mui/icons-material';
 
 export default function NavBar() {
   const { isOpen, onToggle } = useDisclosure();
+
+  const goToShelf = () => {
+    //Go to shelf
+  };
 
   return (
     <Box>
@@ -43,17 +46,19 @@ export default function NavBar() {
         <Flex
           flex={{ base: 1, md: "auto" }}
           ml={{ base: -2 }}
-          display={{ base: "flex", md: "none" }}
+          display={{ base: "flex", md: "flex" }}
+          alignItems="center"
+          alignContent="center"
         >
           <IconButton
-            onClick={onToggle}
-            icon={
-              isOpen ? <CloseIcon w={3} h={3} /> : <MenuIcon<SvgIconComponent> w={5} h={5} />
-            }
+            onClick={goToShelf} //Create a new function to go to shelf
+            icon={<ArrowBackIos/ >}
             variant={"ghost"}
             aria-label={"Toggle Navigation"}
           />
+          <Text textAlign={"center"}>Shelf</Text>
         </Flex>
+        {/* Logo + NavBar Menu
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
           <Text
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
@@ -66,40 +71,29 @@ export default function NavBar() {
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
-        </Flex>
+        </Flex> */}
 
         <Stack
-          flex={{ base: 1, md: 0 }}
+          flex={{ base: 1, md: 0 }} //This the space buttons will take to grow
           justify={"flex-end"}
           direction={"row"}
           spacing={6}
         >
-          <Button
-            as={"a"}
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
-            href={"#"}
-          >
-            Sign In
-          </Button>
-          <Button
-            as={"a"}
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"pink.400"}
-            href={"#"}
-            _hover={{
-              bg: "pink.300",
-            }}
-          >
-            Sign Up
-          </Button>
+          <IconButton
+            onClick={goToShelf} //Create a new function to trigger Outline and link with Collapse component
+            icon={<List />}
+            variant={"ghost"}
+            aria-label={"Toggle Navigation"}
+          />
+          <IconButton
+            onClick={goToShelf} //New Menu
+            icon={<MoreVert />}
+            variant={"ghost"}
+            aria-label={"Toggle Navigation"}
+          />
         </Stack>
       </Flex>
-
+{/* Use this to launch the Outline */}
       <Collapse in={isOpen} animateOpacity>
         <MobileNav />
       </Collapse>
