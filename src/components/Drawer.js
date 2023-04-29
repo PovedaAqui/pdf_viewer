@@ -12,28 +12,29 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 
-const DrawerBar = ({ outline }) => {
+const DrawerBar = ({ open, toggle }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
 
   return (
     <>
-      <IconButton ref={btnRef} colorScheme="teal" onClick={onOpen} />
+      {/* <IconButton ref={btnRef} colorScheme="teal" onClick={onOpen} /> */}
       <Drawer
-        isOpen={isOpen}
+        isOpen={open}
         placement="left"
         onClose={onClose}
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerCloseButton />
+          <DrawerCloseButton onClick={toggle} />
           <DrawerHeader>Create your account</DrawerHeader>
 
-          <DrawerBody>{outline}</DrawerBody>
+          {/* <DrawerBody>{outline}</DrawerBody> */}
+          <DrawerBody>TEST</DrawerBody>
 
           <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
+            <Button variant="outline" mr={3} onClick={toggle}>
               Cancel
             </Button>
             <Button colorScheme="blue">Save</Button>

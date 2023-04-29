@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   Flex,
@@ -22,9 +23,11 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import { ArrowBackIos, Menu, Close, List, MoreVert } from '@mui/icons-material';
+import DrawerBar from "./Drawer";
 
 export default function NavBar() {
-  const { isOpen, onToggle } = useDisclosure();
+  const { isOpen, onToggle, onOpen, onClose } = useDisclosure();
+  const btnRef = React.useRef(null);
 
   const goToShelf = () => {
     //Go to shelf
@@ -51,7 +54,7 @@ export default function NavBar() {
           alignContent="center"
         >
           <IconButton
-            onClick={goToShelf} //Create a new function to go to shelf
+            onClick={goToShelf} //Create a new function to go to shelf, before it was onToggle
             icon={<ArrowBackIos/ >}
             variant={"ghost"}
             aria-label={"Toggle Navigation"}
@@ -74,14 +77,15 @@ export default function NavBar() {
         </Flex> */}
 
         <Stack
-          flex={{ base: 1, md: 0 }} //This the space buttons will take to grow
+          flex={{ base: 1, md: 0 }} //This is the space that buttons will take to grow
           justify={"flex-end"}
           direction={"row"}
           spacing={6}
         >
-          <IconButton
-            onClick={goToShelf} //Create a new function to trigger Outline and link with Collapse component
+          <IconButton 
+            onClick={onOpen} //Create a new function to trigger Outline and link with Collapse component. Integrate Drawer.
             icon={<List />}
+            ref={btnRef}
             variant={"ghost"}
             aria-label={"Toggle Navigation"}
           />
@@ -93,9 +97,9 @@ export default function NavBar() {
           />
         </Stack>
       </Flex>
-{/* Use this to launch the Outline */}
+{/* Use this to launch the Drawer-Outline */}
       <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
+        <DrawerBar open={isOpen} toggle={onToggle} />
       </Collapse>
     </Box>
   );
